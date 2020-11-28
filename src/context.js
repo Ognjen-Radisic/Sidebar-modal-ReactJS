@@ -3,8 +3,35 @@ import React, { useState, useContext } from 'react'
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openSidebar = () => {
+    setIsSidebarOpen(true)
+  }
+  const closeSidebar = () => {
+    setIsSidebarOpen(false)
+  }
+
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
   return (
-    <AppContext.Provider value='hello boys and girls'>
+    // we pass in the object with 2 state values and 4 functions
+    <AppContext.Provider
+      value={{
+        isModalOpen,
+        isSidebarOpen,
+        openModal,
+        closeModal,
+        openSidebar,
+        closeSidebar,
+      }}
+    >
       {children}
     </AppContext.Provider>
   )
